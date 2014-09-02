@@ -38,7 +38,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
 
     'oauth_provider',
-    'tddbin'
+    'core'
 )
 
 MIDDLEWARE_CLASSES = (
