@@ -105,7 +105,8 @@ DATABASES = {
 
 INSTALLED_APPS += (
     'core',
-    'rest_framework',
+    'rest_framework', # see http://www.django-rest-framework.org
+    'rest_framework_swagger', # An API documentation generator for Django REST Framework version see https://github.com/marcgibbons/django-rest-swagger
 )
 
 MIDDLEWARE_CLASSES += (
