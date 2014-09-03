@@ -36,10 +36,6 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
-    'provider',
-    'provider.oauth2',
-    'core'
 )
 
 MIDDLEWARE_CLASSES = (
@@ -88,5 +84,43 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
 
 STATIC_URL = '/static/'
+
+
+
+
+
+#
+# tddbin specific stuff
+#
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'tddbin-backend',
+        'USER': 'root',
+        'PASSWORD': '',
+        'HOST': '127.0.0.1',
+    }
+}
+
+INSTALLED_APPS += (
+    'provider',
+    'provider.oauth2',
+    'core',
+    'corsheaders',
+    'rest_framework',
+)
+
+MIDDLEWARE_CLASSES += (
+    'corsheaders.middleware.CorsMiddleware',
+)
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': ('rest_framework.permissions.IsAdminUser',),
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.OAuth2Authentication',
+        'rest_framework.authentication.SessionAuthentication',
+    ),
+}
 
 CORS_ORIGIN_ALLOW_ALL = True
