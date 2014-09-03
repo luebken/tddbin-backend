@@ -104,23 +104,16 @@ DATABASES = {
 }
 
 INSTALLED_APPS += (
-    'provider',
-    'provider.oauth2',
     'core',
-    'corsheaders',
     'rest_framework',
 )
 
 MIDDLEWARE_CLASSES += (
-    'corsheaders.middleware.CorsMiddleware',
 )
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': ('rest_framework.permissions.IsAdminUser',),
     'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework.authentication.OAuth2Authentication',
         'rest_framework.authentication.SessionAuthentication',
     ),
 }
-
-CORS_ORIGIN_ALLOW_ALL = True
