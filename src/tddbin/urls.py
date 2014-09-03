@@ -8,6 +8,8 @@ admin.autodiscover()
 
 router = routers.DefaultRouter()
 router.register(r'users', views.UserViewSet)
+router.register(r'specs', views.UserSpecViewSet)
+router.register(r'sessions', views.UserSessionViewSet)
 
 urlpatterns = patterns('',
     # Examples:
