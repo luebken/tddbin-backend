@@ -16,13 +16,17 @@ DEFAULT_SESSION_NAME_PREFIX = 'Untitled '
 
 
 def generate_session_name(existing_names):
-    start_at = 1
-    new_name = DEFAULT_SESSION_NAME_PREFIX + str(start_at)
-    while new_name in existing_names:
-        start_at += 1
-        new_name = DEFAULT_SESSION_NAME_PREFIX + str(start_at)
-    return new_name
+    if len(existing_names) == 0:
+        return DEFAULT_SESSION_NAME_PREFIX + '1'
 
+    used_postfixes = []
+    for name in existing_names:
+        name_left_over = name.replace(DEFAULT_SESSION_NAME_PREFIX, '')
+        if name_left_over.isdigit():
+            used_postfixes.append(int(name_left_over))
+    used_postfixes.sort()
+    new_postfix = used_postfixes[-1] + 1
+    return DEFAULT_SESSION_NAME_PREFIX + str(new_postfix)
 
 def get_session_name(name, existing_names):
     if name:
@@ -47,6 +51,15 @@ class UntitledSessionNamesTests(TestCase):
             DEFAULT_SESSION_NAME_PREFIX + '3',
         ]
         expected_name = DEFAULT_SESSION_NAME_PREFIX + '4'
+        self.assertEquals(get_session_name('', existing_session_names), expected_name)
+
+    def test_get_double_digit_session_name(self):
+        existing_session_names = [
+            DEFAULT_SESSION_NAME_PREFIX + '1',
+            DEFAULT_SESSION_NAME_PREFIX + '21',
+            DEFAULT_SESSION_NAME_PREFIX + '22',
+        ]
+        expected_name = DEFAULT_SESSION_NAME_PREFIX + '23'
         self.assertEquals(get_session_name('', existing_session_names), expected_name)
 
 class ExistingSessionNamesTests(TestCase):
