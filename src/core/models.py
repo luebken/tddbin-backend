@@ -1,10 +1,22 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+from util.session import get_or_generate_session_name
+
 class Session(models.Model):
     name = models.CharField(max_length=255)
     user = models.ForeignKey(User, blank=True, null=True)
     started_at = models.DateTimeField('started at', auto_now_add=True)
+
+    # On Python 3: def __str__(self):
+    def __unicode__(self):
+        return self.name
+
+    def save(self, *args, **kwargs):
+        existing_session_names = Session.objects.filter(name__startswith=self.UNTITLED_PREFIX, user=self.user).only('name')
+        self.name = get_or_generate_session_name(self.name, existing_session_names)
+        super(Session, self).save(*args, **kwargs) # Call the "real" save() method.
+
 
 class Spec(models.Model):
     code = models.TextField()

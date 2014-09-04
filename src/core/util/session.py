@@ -13,7 +13,7 @@ def generate_session_name(existing_names):
     new_postfix = used_postfixes[-1] + 1
     return DEFAULT_SESSION_NAME_PREFIX + str(new_postfix)
 
-def get_session_name(name, existing_names):
+def get_or_generate_session_name(name, existing_names):
     if name:
         return name
     return generate_session_name(existing_names)
