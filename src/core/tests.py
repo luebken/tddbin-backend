@@ -26,10 +26,13 @@ def get_session_name(name, existing_names):
 
 class UntitledSessionNamesTests(TestCase):
     def test_get_first_session_name(self):
-        self.assertEquals(get_session_name('', []), DEFAULT_SESSION_NAME_PREFIX + '1')
+        existing_session_names = []
+        self.assertEquals(get_session_name('', existing_session_names), DEFAULT_SESSION_NAME_PREFIX + '1')
 
     def test_get_second_session_name(self):
-        self.assertEquals(get_session_name('', [DEFAULT_SESSION_NAME_PREFIX + '1']), DEFAULT_SESSION_NAME_PREFIX + '2')
+        existing_session_names = [DEFAULT_SESSION_NAME_PREFIX + '1']
+        self.assertEquals(get_session_name('', existing_session_names), DEFAULT_SESSION_NAME_PREFIX + '2')
+
 
 class ExistingSessionNamesTests(TestCase):
     def test_get_given_name(self):
