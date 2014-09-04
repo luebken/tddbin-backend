@@ -1,9 +1,6 @@
 # -*- coding: utf-8 -*-
 from django.test import TestCase
 
-from .models import Session
-from .models import Spec
-
 # if self.name == '':
 #     names = Session.objects.filter(name__startswith=self.UNTITLED_PREFIX, user=self.user).only('name')
 #     name_suffix = 1
@@ -22,6 +19,8 @@ def get_session_name(name, existing_names):
     new_name = DEFAULT_SESSION_NAME_PREFIX + '1'
     if new_name in existing_names:
         new_name = DEFAULT_SESSION_NAME_PREFIX + '2'
+    if new_name in existing_names:
+        new_name = DEFAULT_SESSION_NAME_PREFIX + '4'
     return new_name
 
 class UntitledSessionNamesTests(TestCase):
@@ -33,6 +32,13 @@ class UntitledSessionNamesTests(TestCase):
         existing_session_names = [DEFAULT_SESSION_NAME_PREFIX + '1']
         self.assertEquals(get_session_name('', existing_session_names), DEFAULT_SESSION_NAME_PREFIX + '2')
 
+    def test_get_fourth_session_name(self):
+        existing_session_names = [
+            DEFAULT_SESSION_NAME_PREFIX + '1',
+            DEFAULT_SESSION_NAME_PREFIX + '2',
+            DEFAULT_SESSION_NAME_PREFIX + '3',
+        ]
+        self.assertEquals(get_session_name('', existing_session_names), DEFAULT_SESSION_NAME_PREFIX + '4')
 
 class ExistingSessionNamesTests(TestCase):
     def test_get_given_name(self):
