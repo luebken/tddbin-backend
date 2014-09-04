@@ -15,16 +15,24 @@ from .models import Spec
 #     self.name = self.UNTITLED_PREFIX + str(name_suffix)
 # super(Session, self).save(*args, **kwargs) # Call the "real" save() method.
 
+DEFAULT_SESSION_NAME_PREFIX = 'Untitled '
 def get_session_name(name, existing_names):
-    new_name = 'Untitled 1'
+    if name:
+        return name
+    new_name = DEFAULT_SESSION_NAME_PREFIX + '1'
     if new_name in existing_names:
-        new_name = 'Untitled 2'
+        new_name = DEFAULT_SESSION_NAME_PREFIX + '2'
     return new_name
 
 class UntitledSessionNamesTests(TestCase):
     def test_get_first_session_name(self):
-        self.assertEquals(get_session_name('', []), 'Untitled 1')
+        self.assertEquals(get_session_name('', []), DEFAULT_SESSION_NAME_PREFIX + '1')
 
     def test_get_second_session_name(self):
-        self.assertEquals(get_session_name('', ['Untitled 1']), 'Untitled 2')
+        self.assertEquals(get_session_name('', [DEFAULT_SESSION_NAME_PREFIX + '1']), DEFAULT_SESSION_NAME_PREFIX + '2')
+
+class ExistingSessionNamesTests(TestCase):
+    def test_get_given_name(self):
+        session_name = 'my session name'
+        self.assertEquals(get_session_name(session_name, []), session_name)
 
