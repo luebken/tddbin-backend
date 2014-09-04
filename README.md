@@ -1,11 +1,9 @@
-tddbin.com backend
-==================
+# TDDbin.com backend
 
 TDDbin - for getting hooked to TDD in no time
 
 
-First time setup
-----------------
+# First time setup
 
 1) In order to setup python, django, mysql, etc. run `./setup-local-dev-python-env.sh`.
    This will create a directory `python-env` containing all necessary packages.
@@ -20,8 +18,7 @@ In case the setup in step 1) fails, try this:
 - make sure mysql_config is in the path
 
 
-Local development
------------------
+# Local development
 
 To run the web site (using the django dev server), do the following
 
@@ -41,21 +38,20 @@ When you have changed a model and want to synchronize the DB, run:
 3) `python src/manage.py migrate` migrate the DB, which plays all changes on top of the current DB
 
 
-DB setup
---------
+# DB setup
 
 - `pip install mysql-python`
 - in your mysql console `CREATE DATABASE tddbin DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;`
 
-
-???????????????????? old stuff below (copied from tddbin.com)
-????????????????????????????????? fixes needed from here, when the structure has all this stuff ...
-Tests
------
+# Tests
 
 How to run the django tests?
 - `cd tddbin.com/src` and `clear; python manage.py test tddbin --noinput`
 
+
+
+# ???????????????????? old stuff below (copied from tddbin.com)
+????????????????????????????????? fixes needed from here, when the structure has all this stuff ...
 GitHub auth setup
 -----------------
 - go to https://github.com/organizations/uxebu/settings/applications
