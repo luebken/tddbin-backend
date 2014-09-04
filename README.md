@@ -46,7 +46,8 @@ When you have changed a model and want to synchronize the DB, run:
 # Tests
 
 How to run the django tests?
-- `cd tddbin.com/src` and `clear; python manage.py test tddbin --noinput`
+- `cd tddbin-backend/src` and
+- `clear; python ./src/manage.py test core tddbin --noinput`
 
 
 
