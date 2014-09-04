@@ -28,3 +28,8 @@ class Spec(models.Model):
 
     class Meta:
         get_latest_by = 'saved_at'
+
+    # On Python 3: def __str__(self):
+    def __unicode__(self):
+        # for the admin, to make code readable
+        return self.code.split('\n')[0]
