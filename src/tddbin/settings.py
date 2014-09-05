@@ -109,10 +109,13 @@ INSTALLED_APPS += (
     'werkzeug',
     'rest_framework', # see http://www.django-rest-framework.org
     'rest_framework_swagger', # An API documentation generator for Django REST Framework version see https://github.com/marcgibbons/django-rest-swagger
+    'corsheaders',
 )
 
 MIDDLEWARE_CLASSES += (
     # 'werkzeug.debug.DebuggedApplication',
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
 )
 
 REST_FRAMEWORK = {
@@ -137,3 +140,8 @@ SWAGGER_SETTINGS = {
     'is_authenticated': False,  # Set to True to enforce user authentication,
     'is_superuser': False,  # Set to True to enforce admin only access
 }
+
+CORS_ORIGIN_WHITELIST = (
+    'localhost:8080', # for local dev
+    'tddbin.com'
+)
