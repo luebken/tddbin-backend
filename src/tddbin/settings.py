@@ -93,6 +93,11 @@ STATIC_URL = '/static/'
 # tddbin specific stuff
 #
 
+ALLOWED_HOSTS = [
+    'localhost:8080',
+    'tddbin.com',
+]
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
