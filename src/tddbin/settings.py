@@ -109,6 +109,7 @@ INSTALLED_APPS += (
     'werkzeug',
     'rest_framework', # see http://www.django-rest-framework.org
     'rest_framework_swagger', # An API documentation generator for Django REST Framework version see https://github.com/marcgibbons/django-rest-swagger
+    'rest_framework.authtoken', # so we can use token auth for the REST API see http://www.django-rest-framework.org/api-guide/authentication#tokenauthentication
     'corsheaders',
 )
 
@@ -122,6 +123,7 @@ REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': ('rest_framework.permissions.IsAdminUser',),
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
     ),
 }
 
