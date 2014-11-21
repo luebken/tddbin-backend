@@ -5,4 +5,4 @@ RUN pip install -r requirements.txt
 
 ADD src .
 
-CMD ["python", "manage.py"]
+CMD ["python", "manage.py", "runserver"]
